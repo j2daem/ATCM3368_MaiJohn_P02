@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Level01Controller : MonoBehaviour
 {
+    [SerializeField] GameStateManager gameStateManager = null;
+    [SerializeField] Slider volumeSlider = null;
+
     [SerializeField] Text _currentScoreTextView;
 
     int _currentScore;
@@ -19,12 +22,49 @@ public class Level01Controller : MonoBehaviour
             IncreaseScore(5);
         }
 
-        //Exit level
+        //Pop-up pause menu
         //TODO: Bring up pop-up menu for navigation
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ExitLevel();
+            PauseLevel();
         }
+    }
+
+    public void ResumeLevel()
+    {
+        gameStateManager.ResumeGame();
+    }
+
+    public void PauseLevel()
+    {
+        gameStateManager.PauseGame();
+    }
+
+    public void ConfirmRestart()
+    {
+        gameStateManager.RestartGame();
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Level01");
+    }
+
+    public void ConfirmSettings()
+    {
+        gameStateManager.OpenSettings();
+    }
+
+    public void AdjustVolume()
+    {
+        global::AudioManager.Instance.AdjustVolume(volumeSlider.value);
+        Debug.Log("New volume: " + volumeSlider.value.ToString());
+    }
+
+
+    public void ConfirimExit()
+    {
+        gameStateManager.OpenExit();
     }
 
     public void ExitLevel()
