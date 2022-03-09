@@ -6,8 +6,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance = null;
-
-    AudioSource _audioSource;
+    public AudioSource _audioSource;
 
     private void Awake()
     {
@@ -24,6 +23,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         #endregion
+    }
+
+    public void AdjustVolume(float newVolume)
+    {
+        _audioSource.volume = newVolume;
     }
 
     public void PlaySong(AudioClip clip)

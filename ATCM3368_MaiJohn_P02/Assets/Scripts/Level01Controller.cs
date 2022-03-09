@@ -30,7 +30,7 @@ public class Level01Controller : MonoBehaviour
     public void ExitLevel()
     {
         //Load high score from player prefs; create if non-existent
-        int highScore = PlayerPrefs.GetInt("HighScore");
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
 
         //Compare current score to high score
         if (_currentScore > highScore)
@@ -49,6 +49,6 @@ public class Level01Controller : MonoBehaviour
         //Increase score
         _currentScore += scoreIncrease;
         //Update score display to show new score
-        _currentScoreTextView.text = "Score: " + _currentScore.ToString();
+        _currentScoreTextView.text = _currentScore.ToString();
     }
 }

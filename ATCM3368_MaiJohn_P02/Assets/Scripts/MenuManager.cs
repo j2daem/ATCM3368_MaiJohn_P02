@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject mainMenuPanel = null;
     [SerializeField] GameObject creditsMenuPanel = null;
     [SerializeField] GameObject resetMenuPanel = null;
+    [SerializeField] GameObject settingsMenuPanel = null;
     [SerializeField] GameObject quitMenuPanel = null;
 
     //Keep track which state is active
@@ -25,6 +26,7 @@ public class MenuManager : MonoBehaviour
         Main,
         Credits,
         Reset,
+        Settings,
         Quit
     }
 
@@ -50,6 +52,12 @@ public class MenuManager : MonoBehaviour
                 Debug.Log("Current menu state: Reset");
                 break;
 
+            case "Settings":
+            case "settings":
+                currentMenuState = MenuState.Settings;
+                Debug.Log("Current menu state: Settings");
+                break;
+
             case "Quit":
             case "quit":
                 currentMenuState = MenuState.Quit;
@@ -71,6 +79,7 @@ public class MenuManager : MonoBehaviour
                 mainMenuPanel.SetActive(true);
                 creditsMenuPanel.SetActive(false);
                 resetMenuPanel.SetActive(false);
+                settingsMenuPanel.SetActive(false);
                 quitMenuPanel.SetActive(false);
                 break;
 
@@ -78,6 +87,7 @@ public class MenuManager : MonoBehaviour
                 creditsMenuPanel.SetActive(true);
                 mainMenuPanel.SetActive(false);
                 resetMenuPanel.SetActive(false);
+                settingsMenuPanel.SetActive(false);
                 quitMenuPanel.SetActive(false);
                 break;
 
@@ -85,6 +95,15 @@ public class MenuManager : MonoBehaviour
                 resetMenuPanel.SetActive(true);
                 mainMenuPanel.SetActive(false);
                 creditsMenuPanel.SetActive(false);
+                settingsMenuPanel.SetActive(false);
+                quitMenuPanel.SetActive(false);
+                break;
+
+            case MenuState.Settings:
+                settingsMenuPanel.SetActive(true);
+                mainMenuPanel.SetActive(false);
+                creditsMenuPanel.SetActive(false);
+                resetMenuPanel.SetActive(false);
                 quitMenuPanel.SetActive(false);
                 break;
 
@@ -93,6 +112,11 @@ public class MenuManager : MonoBehaviour
                 mainMenuPanel.SetActive(false);
                 creditsMenuPanel.SetActive(false);
                 resetMenuPanel.SetActive(false);
+                settingsMenuPanel.SetActive(false);
+                break;
+                
+            default:
+                Debug.Log("Invalid menu state.");
                 break;
         }
     }
