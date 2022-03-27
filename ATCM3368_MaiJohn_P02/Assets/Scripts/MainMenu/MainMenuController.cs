@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] AudioClip _openingSong;
+    [Header("Menu Controller Intialization")]
     //[SerializeField] AudioClip _startingSong;
     [SerializeField] Text _highScoreTextView = null;
+    [SerializeField] MenuManager menuManager = null;
+    [SerializeField] AudioClip _openingSong;
     [SerializeField] Slider volumeSlider = null;
 
     private void Start()
     {
+        menuManager.ChooseMenuToOpen("Main");
+
         Cursor.lockState = CursorLockMode.None;
 
         //Load high score display

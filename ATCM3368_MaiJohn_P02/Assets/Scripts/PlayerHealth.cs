@@ -4,64 +4,60 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] GameStateManager gameStateManager = null;
+    //[SerializeField] GameStateManager gameStateManager = null;
     [SerializeField] UIManager uIManager = null;
 
-    [SerializeField] int maximumHealth = 5;
-    [SerializeField] int currentHealth; //Serialization ust for visualization purposes; remove later
+    [SerializeField] int StartingHealth = 5;
+    [SerializeField] int MaximumHealth = 5;
+    [SerializeField] int CurrentHealth; // Serialization just for visualization purposes; remove later
 
-    void Start()
+    void Awake()
     {
-        currentHealth = maximumHealth;
+        CurrentHealth = StartingHealth;
         uIManager.SetHealthBarMin(0);
-        uIManager.SetHealthBarMax(maximumHealth);
+        uIManager.SetHealthBarMax(MaximumHealth);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (CurrentHealth <= 0)
         {
-            DecreaseHealth(1);
+            CurrentHealth = 0;
+            uIManager.UpdateHealthBar();
+            //gameStateManager.LoseGame();
+            Debug.Log("Health reached zero...");
         }
     }
 
     public int GetCurrentHealth()
     {
-        return currentHealth;
+        return CurrentHealth;
     }
 
     public void DecreaseHealth(int damageAmount)
     {
-        if (currentHealth >= damageAmount)
+        if (CurrentHealth >= damageAmount)
         {
-            currentHealth -= damageAmount;
+            CurrentHealth -= damageAmount;
             uIManager.UpdateHealthBar();
-            Debug.Log("Health decreased to " + currentHealth.ToString());
-        }
-
-        else
-        {
-            currentHealth = 0;
-            uIManager.UpdateHealthBar();
-            gameStateManager.LoseGame();
-            Debug.Log("Health reached zero...");
+            Debug.Log("Health decreased to " + CurrentHealth.ToString());
         }
     }
 
     public void IncreaseHealth(int healAmount)
     {
-        if ((currentHealth + healAmount) > maximumHealth)
+        if ((CurrentHealth + healAmount) > MaximumHealth)
         {
-            currentHealth = maximumHealth;
+            CurrentHealth = MaximumHealth;
             uIManager.UpdateHealthBar();
         }
 
         else
         {
-            currentHealth += healAmount;
+            CurrentHealth += healAmount;
             uIManager.UpdateHealthBar();
         }
 
-        Debug.Log("Health increased to " + currentHealth.ToString());
+        Debug.Log("Health increased to " + CurrentHealth.ToString());
     }
 }
