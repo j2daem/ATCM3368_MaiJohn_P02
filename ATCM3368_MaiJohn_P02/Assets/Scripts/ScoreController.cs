@@ -5,26 +5,16 @@ public class ScoreController : MonoBehaviour
 {
     [SerializeField] UnityEvent UpdateScore;
 
-    [SerializeField] int StartingScore = 0;
-    [SerializeField] int MinimumScore = 0;
+    [SerializeField] int startingScore = 0;
+    [SerializeField] int minimumScore = 0;
 
     int currentScore;
-
-    private void Update()
-    {
-        // For testing high score; remove later
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            IncreaseScore(5);
-            Debug.Log("Current score: " + currentScore);
-        }
-    }
 
     public int GetCurrentScore => currentScore;
 
     private void Awake()
     {
-        currentScore = StartingScore;
+        currentScore = startingScore;
     }
 
     public void IncreaseScore(int scoreIncrease)
@@ -36,9 +26,9 @@ public class ScoreController : MonoBehaviour
     {
         currentScore -= scoreDecrease;
 
-        if (currentScore < 0)
+        if (currentScore < minimumScore)
         {
-            currentScore = 0;
+            currentScore = minimumScore;
         }
     }
 

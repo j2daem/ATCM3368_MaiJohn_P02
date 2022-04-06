@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] CharacterController characterController = null;
     [SerializeField] float movementSpeed = 12f;
@@ -36,17 +38,17 @@ public class PlayerMovement : MonoBehaviour
             move /= move.magnitude;
         }
 
-        characterController.Move(movementSpeed * Time.deltaTime * move);
+        characterController.Move(move * movementSpeed * Time.deltaTime);
 
         //Increase player movement (sprint) while left shift is held
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            characterController.Move(sprintSpeed * Time.deltaTime * move);
+            characterController.Move(move * sprintSpeed * Time.deltaTime);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            characterController.Move(movementSpeed * Time.deltaTime * move);
+            characterController.Move(move * movementSpeed * Time.deltaTime);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)

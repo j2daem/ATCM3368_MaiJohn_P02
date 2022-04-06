@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8066038, b: 0.8442244, a: 1}
+  m_Color: {r: 1, g: 0.752, b: 0.79513043, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -3930,9 +3930,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53dd7f6e2302164ba32b1ee8d0b2455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuManager: {fileID: 1586937745}
-  _openingSong: {fileID: 8300000, guid: e09eae4172d4e404fa1f8737add5c629, type: 3}
   _highScoreTextView: {fileID: 847517617}
+  menuManager: {fileID: 1586937745}
+  _openingSong: {fileID: 8300000, guid: 05a895ae16919034ab9b37374645ec53, type: 3}
   volumeSlider: {fileID: 208769506}
 --- !u!1 &2002617620
 GameObject:

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
@@ -9,7 +7,7 @@ public class MainMenuController : MonoBehaviour
     //[SerializeField] AudioClip _startingSong;
     [SerializeField] Text _highScoreTextView = null;
     [SerializeField] MenuManager menuManager = null;
-    [SerializeField] AudioClip _openingSong;
+    [SerializeField] AudioClip _openingSong = null;
     [SerializeField] Slider volumeSlider = null;
 
     private void Start()

@@ -10,27 +10,28 @@ public class Damage : MonoBehaviour
     [SerializeField] GameObject visualsToDeactivate;
     [SerializeField] Collider colliderToDeactivate;
     [SerializeField] ScoreController scoreController = null;
-    
-    //CameraShake cameraShake = null;
-    //MouseLook mouseLook = null;
 
     private void Awake()
     {
         colliderToDeactivate = GetComponent<Collider>();
-        //cameraShake = FindObjectOfType<CameraShake>();
-        //mouseLook = FindObjectOfType<MouseLook>();
 
         EnableObject();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-        playerHealth.DecreaseHealth(DamageAmount);
-        scoreController.DecreaseScore(ScoreDecrease);
+        PlayerHealth playerHealth = other.gameObject.transform.GetComponent<PlayerHealth>();
+        CameraShake cameraShake = other.gameObject.transform.GetComponentInChildren<CameraShake>();
 
-        /*cameraShake.StartShake();*/
-        DisableObject();
+        if (playerHealth != null)
+        {
+            playerHealth.DecreaseHealth(DamageAmount);
+            scoreController.DecreaseScore(ScoreDecrease);
+
+            cameraShake.StartShake();
+
+            DisableObject();
+        }
     }
 
     private void DisableObject()
